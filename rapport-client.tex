@@ -1,0 +1,398 @@
+\documentclass[12pt, a4paper]{article}
+
+% ============================================
+% PACKAGES
+% ============================================
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[french]{babel}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{tabularx}
+\usepackage{booktabs}
+\usepackage{fancyhdr}
+\usepackage{hyperref}
+\usepackage{parskip}
+\usepackage{tikz}
+\usepackage{fontawesome5}
+\usepackage{tcolorbox}
+\usepackage{etoolbox}
+
+% ============================================
+% MISE EN PAGE
+% ============================================
+\geometry{top=2.5cm, bottom=2.5cm, left=2.5cm, right=2.5cm}
+
+% Couleurs
+\definecolor{bleuprofond}{HTML}{0F2044}
+\definecolor{bleufonce}{HTML}{1A3365}
+\definecolor{bleumoyen}{HTML}{2C5282}
+\definecolor{bleuclair}{HTML}{4A90D9}
+\definecolor{bleuaccent}{HTML}{3B82F6}
+\definecolor{bleupastel}{HTML}{E8F0FE}
+\definecolor{gris600}{HTML}{475569}
+\definecolor{gris400}{HTML}{94A3B8}
+\definecolor{gris200}{HTML}{E2E8F0}
+\definecolor{vert}{HTML}{10B981}
+
+% Liens
+\hypersetup{
+  colorlinks=true,
+  linkcolor=bleumoyen,
+  urlcolor=bleuaccent,
+  citecolor=bleumoyen,
+  pdfauthor={Selyan Mouhali},
+  pdftitle={Mission structuration documentaire - Rapport client},
+  pdfsubject={Santé numérique}
+}
+
+% Titres
+\titleformat{\section}
+  {\Large\bfseries\color{bleuprofond}}
+  {\thesection.}{0.5em}{}
+  [\vspace{-0.3em}\textcolor{bleuaccent}{\rule{\textwidth}{1.5pt}}]
+
+\titleformat{\subsection}
+  {\large\bfseries\color{bleufonce}}
+  {\thesubsection}{0.5em}{}
+
+\titleformat{\subsubsection}
+  {\normalsize\bfseries\color{bleumoyen}}
+  {\thesubsubsection}{0.5em}{}
+
+% En-tête / pied de page
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\textcolor{gris400}{Mission structuration documentaire}}
+\fancyhead[R]{\small\textcolor{gris400}{Santé numérique}}
+\fancyfoot[C]{\small\textcolor{gris400}{\thepage}}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\headrule}{\hbox to\headwidth{\color{gris200}\leaders\hrule height \headrulewidth\hfill}}
+
+% Boîtes colorées
+\tcbuselibrary{skins, breakable}
+
+\newtcolorbox{keybox}[1][]{
+  colback=bleupastel,
+  colframe=bleuaccent,
+  fonttitle=\bfseries\color{bleuprofond},
+  title={#1},
+  arc=3pt,
+  boxrule=0.8pt,
+  left=8pt, right=8pt, top=6pt, bottom=6pt,
+  breakable
+}
+
+\newtcolorbox{infobox}[1][]{
+  colback=white,
+  colframe=gris200,
+  fonttitle=\bfseries\color{gris600},
+  title={#1},
+  arc=3pt,
+  boxrule=0.6pt,
+  left=8pt, right=8pt, top=6pt, bottom=6pt,
+  breakable
+}
+
+% ============================================
+% DOCUMENT
+% ============================================
+\begin{document}
+
+% ============================================
+% PAGE DE GARDE
+% ============================================
+\begin{titlepage}
+\begin{center}
+
+\vspace*{2cm}
+
+{\Huge\bfseries\textcolor{bleuprofond}{Mission de structuration\\[0.3em]documentaire}}
+
+\vspace{0.8cm}
+
+{\LARGE\textcolor{bleumoyen}{Santé numérique}}
+
+\vspace{0.5cm}
+
+\textcolor{bleuaccent}{\rule{8cm}{2pt}}
+
+\vspace{1.5cm}
+
+{\large\textcolor{gris600}{Rapport de cadrage et recommandations\\[0.3em]à destination du client}}
+
+\vspace{2cm}
+
+\begin{tabular}{rl}
+\textcolor{gris400}{\faIcon{user}} & \textbf{Selyan Mouhali} \\[0.4em]
+\textcolor{gris400}{\faIcon{calendar}} & Mars 2026 \\[0.4em]
+\textcolor{gris400}{\faIcon{file-alt}} & Version 1.0 \\[0.4em]
+\textcolor{gris400}{\faIcon{lock}} & Document confidentiel
+\end{tabular}
+
+\vfill
+
+\begin{tcolorbox}[
+  colback=bleupastel,
+  colframe=bleuaccent,
+  arc=4pt,
+  boxrule=0.6pt,
+  width=12cm,
+  halign=center
+]
+\small\textcolor{bleuprofond}{%
+\textbf{Prototype d'interface consultable en ligne :}\\[0.3em]
+\url{https://github.com/selyan-mouhali/mission-sante-numerique}}
+\end{tcolorbox}
+
+\vspace{1cm}
+
+\end{center}
+\end{titlepage}
+
+% ============================================
+% TABLE DES MATIÈRES
+% ============================================
+\tableofcontents
+\newpage
+
+% ============================================
+% 1. CONTEXTE ET ENJEUX
+% ============================================
+\section{Contexte et enjeux}
+
+\subsection{Présentation du client}
+
+Le projet s'inscrit dans le cadre d'une \textbf{association dédiée au numérique en santé}, en lien avec un écosystème de partenaires potentiels~: hôpitaux, médecins, institutions publiques de santé.
+
+L'association dispose d'un \textbf{corpus documentaire estimé entre 100 et 200 fichiers}, constitué au fil du temps dans des formats hétérogènes~: principalement \textbf{Word} et \textbf{PowerPoint}, avec quelques PDF. Ces documents couvrent des sujets variés~: télésurveillance, interopérabilité, stratégie e-santé, sécurité des données, coordination des soins, etc.
+
+\subsection{Le besoin identifié}
+
+L'analyse des échanges et des éléments fournis met en évidence un besoin prioritaire~:
+
+\begin{keybox}[Besoin principal]
+\textbf{Mise en ordre et exploitation d'un fonds documentaire hétérogène}~: classer l'existant, rendre la base consultable, et préparer des usages futurs d'aide à la rédaction par IA pour de nouveaux contributeurs.
+\end{keybox}
+
+Le projet doit être lu comme un \textbf{sujet d'architecture de l'information}~: définir une logique de tri, de nommage, de taxonomie et de métadonnées, puis choisir le meilleur véhicule pour l'opérationnaliser.
+
+\subsection{Signaux en faveur d'une approche progressive}
+
+Plusieurs éléments convergent vers une approche par étapes plutôt que par un développement immédiat~:
+
+\begin{itemize}[leftmargin=1.5em]
+  \item Le corpus reste de \textbf{taille raisonnable} (100 à 200 documents)~;
+  \item Les \textbf{6 axes de tri ne sont pas encore définis}, ce qui signifie que le modèle documentaire n'est pas stabilisé~;
+  \item L'IA est une \textbf{perspective future}, pas un besoin de production immédiat~;
+  \item Les formats majoritaires (Word, PowerPoint) sont des contenus riches mais hétérogènes, qui \textbf{nécessitent une normalisation} avant tout outillage avancé.
+\end{itemize}
+
+% ============================================
+% 2. CHOIX STRATÉGIQUE
+% ============================================
+\section{Analyse des options et choix stratégique}
+
+\subsection{Deux approches possibles}
+
+Deux trajectoires ont été évaluées pour répondre au besoin du client~:
+
+\begin{itemize}[leftmargin=1.5em]
+  \item \textbf{Option A} --- Classification et structuration via COSI (environnement existant)~;
+  \item \textbf{Option B} --- Développement d'une interface web complète sur mesure.
+\end{itemize}
+
+\subsection{Comparaison détaillée}
+
+\begin{center}
+\renewcommand{\arraystretch}{1.4}
+\begin{tabularx}{\textwidth}{>{\bfseries\small}l X X}
+\toprule
+\textbf{\textcolor{bleuprofond}{Critère}} & \textbf{\textcolor{bleuprofond}{Option A -- COSI}} & \textbf{\textcolor{bleuprofond}{Option B -- Interface web}} \\
+\midrule
+Objet & S'appuyer sur un environnement existant pour classer, indexer et gouverner le fonds documentaire. & Construire un produit dédié pour consulter, filtrer, rechercher et contribuer. \\
+\midrule
+Valeur immédiate & \textcolor{vert}{\textbf{Forte}}~: on traite le problème racine (structuration). & Visible mais indirecte~: l'interface peut masquer un fond mal organisé. \\
+\midrule
+Effort / délai & Maîtrisable, rapide à lancer, forfait défendable. & Plus lourd~: cadrage UX, sécurité, droits, maintenance. \\
+\midrule
+Risque & Modéré~: périmètre clair, meilleure marge. & Élevé~: dérive, scope creep, incompréhension MVP. \\
+\midrule
+Pertinence à 200~docs & \textcolor{vert}{\textbf{Très bonne.}} & Faible à moyenne~: potentiellement surdimensionnée. \\
+\midrule
+Évolutivité & Très bonne~: prépare le RAG et une future interface. & Bonne à long terme, si structure stabilisée. \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\subsection{Recommandation~: Option A -- COSI}
+
+\begin{keybox}[Notre recommandation]
+Privilégier une \textbf{phase~1 de structuration via COSI}, avec taxonomie, métadonnées, 6 axes de tri et préparation des futurs usages IA.
+
+\medskip
+
+COSI n'est pas la valeur en soi, mais le \textbf{véhicule le plus rationnel} pour déployer rapidement une base documentaire structurée. L'intérêt est d'éviter un développement sur mesure trop précoce, tout en disposant d'une GED, d'un moteur de recherche, d'une arborescence et de droits d'accès déjà disponibles.
+\end{keybox}
+
+La plus-value ne réside pas dans l'outil, mais dans la \textbf{conception du système documentaire} qui vivra dedans.
+
+% ============================================
+% 3. NOTRE PLUS-VALUE
+% ============================================
+\section{Notre plus-value concrète}
+
+Le travail de structuration apporte une valeur directe et mesurable~:
+
+\begin{enumerate}[leftmargin=1.5em]
+  \item \textbf{Définir les 6 axes de tri} pertinents pour la santé numérique~:
+    \begin{itemize}[leftmargin=1em]
+      \item Type de document (guide, fiche, étude, cahier des charges\ldots)
+      \item Thématique (télésurveillance, interopérabilité, sécurité\ldots)
+      \item Public cible (professionnels de santé, DSI, institutionnels\ldots)
+      \item Source / partenaire
+      \item Niveau de confidentialité (public, interne, restreint)
+      \item Statut / maturité (brouillon, en cours, validé)
+    \end{itemize}
+  \item \textbf{Construire une taxonomie claire} adaptée au secteur de la santé numérique~;
+  \item \textbf{Définir les métadonnées} obligatoires et optionnelles pour rendre la base interrogeable~;
+  \item \textbf{Organiser le corpus} pour que les futurs contributeurs retrouvent rapidement les bons matériaux de référence~;
+  \item \textbf{Préparer le terrain} pour une future recherche sémantique, un RAG ou une aide à la rédaction assistée par IA.
+\end{enumerate}
+
+% ============================================
+% 4. PLAN D'ACTION
+% ============================================
+\section{Plan d'action proposé}
+
+La mission se décompose en \textbf{5 étapes} séquentielles et cohérentes~:
+
+\begin{center}
+\renewcommand{\arraystretch}{1.5}
+\begin{tabularx}{\textwidth}{>{\bfseries\small\color{bleuprofond}}l X}
+\toprule
+\textbf{Étape} & \textbf{Contenu} \\
+\midrule
+Phase 1 -- Audit ciblé & Inventorier le corpus, identifier les grandes familles documentaires, repérer doublons, versions et documents sensibles. \\
+\midrule
+Phase 2 -- Modèle documentaire & Définir les 6 axes de tri, la taxonomie, les règles de nommage et les métadonnées obligatoires / optionnelles. \\
+\midrule
+Phase 3 -- Implémentation COSI & Créer l'arborescence, les catégories, les filtres utiles et les règles de classement dans l'environnement COSI. \\
+\midrule
+Phase 4 -- Préparation IA & Structurer les contenus pour rendre possible ensuite une recherche augmentée et une aide à la rédaction. \\
+\midrule
+Phase 5 -- Démo visuelle & Montrer une interface de projection pour illustrer la phase~2 potentielle sans surpromettre un développement complet. \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+% ============================================
+% 5. PROTOTYPE D'INTERFACE
+% ============================================
+\section{Prototype d'interface -- Aperçu phase~2}
+
+Afin de rendre tangible la trajectoire proposée, nous avons réalisé un \textbf{prototype fonctionnel d'interface web}. Ce prototype illustre ce que pourrait devenir la base documentaire une fois structurée, si le client souhaite aller vers une exploitation avancée.
+
+\subsection{Ce que montre le prototype}
+
+\begin{itemize}[leftmargin=1.5em]
+  \item \textbf{Tableau de bord} avec indicateurs clés (nombre de documents, thématiques, sources, taux de structuration)~;
+  \item \textbf{Moteur de recherche} plein texte avec filtrage instantané~;
+  \item \textbf{6 axes de filtres} fonctionnels (type, thématique, public, source, confidentialité, statut)~;
+  \item \textbf{12 documents fictifs réalistes} liés à la santé numérique, avec métadonnées complètes~;
+  \item \textbf{Assistant IA simulé} montrant des cas d'usage concrets~:
+    \begin{itemize}[leftmargin=1em]
+      \item Synthèse automatique de documents par thématique~;
+      \item Aide à la rédaction pour de nouveaux contributeurs~;
+      \item Identification de contenus pour un partenariat institutionnel.
+    \end{itemize}
+  \item \textbf{Feuille de route visuelle} avec timeline phase~1 / phase~2.
+\end{itemize}
+
+\subsection{Accès au prototype}
+
+Le prototype est consultable en ligne via le dépôt GitHub du projet~:
+
+\begin{keybox}[Lien vers le prototype]
+\centering
+\faIcon{github}\quad\url{https://github.com/selyan-mouhali/mission-sante-numerique}
+
+\medskip
+
+\small Il s'agit d'un fichier HTML autonome, sans backend ni framework, ouvrable directement dans un navigateur. Le code source est documenté et versionné.
+\end{keybox}
+
+\subsection{Ce que le prototype ne fait pas}
+
+Il est important de préciser que ce prototype est une \textbf{projection visuelle}~:
+
+\begin{itemize}[leftmargin=1.5em]
+  \item Il ne contient pas de vraie intelligence artificielle~;
+  \item Il ne se connecte à aucune base de données~;
+  \item Il ne remplace pas le travail de structuration de la phase~1~;
+  \item Il sert uniquement à \textbf{rendre concret} le potentiel d'une base documentaire bien structurée.
+\end{itemize}
+
+% ============================================
+% 6. QUAND PASSER À UNE INTERFACE COMPLÈTE
+% ============================================
+\section{Quand une interface complète deviendrait pertinente}
+
+Une plateforme web dédiée deviendrait légitime dans les cas suivants~:
+
+\begin{itemize}[leftmargin=1.5em]
+  \item Le \textbf{volume documentaire augmente} fortement au-delà de 200 documents~;
+  \item \textbf{Plusieurs profils} doivent contribuer ou consulter simultanément~;
+  \item Des \textbf{workflows éditoriaux} (validation, relecture, publication) sont nécessaires~;
+  \item Le client souhaite exposer un \textbf{portail à des partenaires externes} (hôpitaux, institutions).
+\end{itemize}
+
+\begin{infobox}[Point important]
+Dans ce scénario, le \textbf{socle défini en phase~1 resterait intégralement réutilisé}~: taxonomie, axes de tri, métadonnées et arborescence serviraient de fondation à la plateforme.
+\end{infobox}
+
+% ============================================
+% 7. CE QU'IL FAUT ÉVITER
+% ============================================
+\section{Points de vigilance}
+
+Pour garantir la réussite du projet, certains écueils doivent être évités~:
+
+\begin{itemize}[leftmargin=1.5em]
+  \item \textbf{Ne pas promettre} une plateforme complète en peu de temps sans avoir validé les usages réels~;
+  \item \textbf{Ne pas brancher} une IA directement sur des données sensibles sans cadrage sécurité et conformité~;
+  \item \textbf{Ne pas automatiser} le classement sans travail humain sur la taxonomie et les règles documentaires~;
+  \item \textbf{Ne pas présenter} un RAG ou une base vectorielle comme solution miracle avant d'avoir nettoyé et structuré le corpus.
+\end{itemize}
+
+% ============================================
+% 8. CONCLUSION
+% ============================================
+\section{Conclusion et message clé}
+
+Pour cette phase, la meilleure approche est de proposer une \textbf{mission de structuration documentaire via COSI}. C'est l'option~:
+
+\begin{itemize}[leftmargin=1.5em]
+  \item la plus \textbf{rentable} pour le prestataire~;
+  \item la plus \textbf{réaliste} pour le client~;
+  \item la plus \textbf{simple à défendre}~: elle produit une valeur immédiate, réduit le risque de faux départ et prépare une future couche d'interface web ou d'IA si le besoin se confirme.
+\end{itemize}
+
+\begin{keybox}[Message clé]
+\centering
+\large\itshape
+\textcolor{bleuprofond}{«~Avec 100 à 200 documents, le bon investissement n'est pas de développer trop tôt une plateforme complète, mais de structurer d'abord un actif documentaire exploitable, retrouvable et prêt pour l'IA.~»}
+\end{keybox}
+
+\vfill
+
+\begin{center}
+\small\textcolor{gris400}{---}\\[0.3em]
+\small\textcolor{gris400}{Document rédigé par Selyan Mouhali~---~Mars 2026}\\[0.2em]
+\small\textcolor{gris400}{Prototype disponible sur \url{https://github.com/selyan-mouhali/mission-sante-numerique}}
+\end{center}
+
+\end{document}
