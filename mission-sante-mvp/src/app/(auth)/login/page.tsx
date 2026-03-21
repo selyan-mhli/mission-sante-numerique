@@ -23,9 +23,10 @@ export default function LoginPage() {
         body: JSON.stringify({ email, password }),
       });
 
+      const data = await res.json().catch(() => null);
+
       if (!res.ok) {
-        const data = await res.json();
-        throw new Error(data.error);
+        throw new Error(data?.error || "Erreur serveur");
       }
 
       router.push("/documents");

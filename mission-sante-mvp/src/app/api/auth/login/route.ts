@@ -3,18 +3,26 @@ import { createSession } from "@/lib/auth";
 import { authenticateUser } from "@/services/user.service";
 
 export async function POST(req: NextRequest) {
-  const { email, password } = await req.json();
+  try {
+    const { email, password } = await req.json();
 
-  if (!email || !password) {
-    return NextResponse.json({ error: "Email et mot de passe requis" }, { status: 400 });
+    if (!email || !password) {
+      return NextResponse.json({ error: "Email et mot de passe requis" }, { status: 400 });
+    }
+
+    const user = await authenticateUser(email, password);
+    if (!user) {
+      return NextResponse.json({ error: "Identifiants invalides" }, { status: 401 });
+    }
+
+    await createSession(user.id);
+
+    return NextResponse.json({ user });
+  } catch (error) {
+    console.error("Login error:", error);
+    return NextResponse.json(
+      { error: "Erreur serveur lors de la connexion" },
+      { status: 500 }
+    );
   }
-
-  const user = await authenticateUser(email, password);
-  if (!user) {
-    return NextResponse.json({ error: "Identifiants invalides" }, { status: 401 });
-  }
-
-  await createSession(user.id);
-
-  return NextResponse.json({ user });
 }
