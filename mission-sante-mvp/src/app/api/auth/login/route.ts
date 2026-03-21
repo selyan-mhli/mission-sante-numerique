@@ -18,10 +18,13 @@ export async function POST(req: NextRequest) {
     await createSession(user.id);
 
     return NextResponse.json({ user });
-  } catch (error) {
-    console.error("Login error:", error);
+  } catch (error: any) {
+    const message = error?.message || String(error);
+    const code = error?.code || "unknown";
+    const meta = error?.meta ? JSON.stringify(error.meta) : "";
+    console.error("Login error:", code, message, meta);
     return NextResponse.json(
-      { error: "Erreur serveur lors de la connexion" },
+      { error: `Erreur serveur [${code}]: ${message}` },
       { status: 500 }
     );
   }
