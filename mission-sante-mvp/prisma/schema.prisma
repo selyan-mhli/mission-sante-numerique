@@ -1,0 +1,90 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User {
+  id         String     @id @default(cuid())
+  name       String
+  email      String     @unique
+  password   String
+  role       String     @default("lecteur") // admin | contributeur | lecteur
+  avatar     String?
+  createdAt  DateTime   @default(now())
+  updatedAt  DateTime   @updatedAt
+  documents  Document[]
+  activities Activity[]
+
+  @@index([role])
+}
+
+model Document {
+  id              String        @id @default(cuid())
+  titre           String
+  resume          String?
+  type            String        // PDF | Word | PPTX
+  theme           String
+  publicCible     String
+  source          String
+  confidentialite String        // Public | Interne | Restreint
+  statut          String        @default("Brouillon") // Brouillon | EnCours | Valide
+  dateDocument    DateTime      @default(now())
+  fileName        String?
+  fileSize        Int?
+  filePath        String?
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
+  createdBy       User?         @relation(fields: [createdById], references: [id])
+  createdById     String?
+  tags            DocumentTag[]
+  activities      Activity[]
+
+  @@index([theme])
+  @@index([type])
+  @@index([source])
+  @@index([statut])
+  @@index([confidentialite])
+  @@index([publicCible])
+  @@index([createdById])
+  @@index([dateDocument])
+  @@index([createdAt])
+}
+
+model Tag {
+  id        String        @id @default(cuid())
+  name      String        @unique
+  documents DocumentTag[]
+
+  @@index([name])
+}
+
+model DocumentTag {
+  document   Document @relation(fields: [documentId], references: [id], onDelete: Cascade)
+  documentId String
+  tag        Tag      @relation(fields: [tagId], references: [id], onDelete: Cascade)
+  tagId      String
+
+  @@id([documentId, tagId])
+  @@index([tagId])
+  @@index([documentId])
+}
+
+model Activity {
+  id         String    @id @default(cuid())
+  action     String    // create | update | delete | view | download
+  details    String?
+  createdAt  DateTime  @default(now())
+  user       User?     @relation(fields: [userId], references: [id])
+  userId     String?
+  document   Document? @relation(fields: [documentId], references: [id], onDelete: SetNull)
+  documentId String?
+
+  @@index([userId])
+  @@index([documentId])
+  @@index([createdAt])
+  @@index([action])
+}

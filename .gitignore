@@ -1,3 +1,4 @@
+# LaTeX
 *.aux
 *.log
 *.out
@@ -5,5 +6,25 @@
 *.fdb_latexmk
 *.fls
 *.synctex.gz
+
+# OS
 .DS_Store
 .claude/
+
+# Node
+node_modules/
+.next/
+*.tsbuildinfo
+
+# Env
+.env
+.env.local
+.env.production
+
+# DB
+*.db
+*.db-journal
+
+# Uploads
+public/uploads/*
+!public/uploads/.gitkeep

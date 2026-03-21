@@ -1,0 +1,311 @@
+\documentclass[12pt, a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[french]{babel}
+\usepackage{geometry}
+\usepackage{xcolor}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{tabularx}
+\usepackage{booktabs}
+\usepackage{fancyhdr}
+\usepackage{hyperref}
+\usepackage{parskip}
+\usepackage{fontawesome5}
+\usepackage{tcolorbox}
+\usepackage{colortbl}
+\usepackage{calc}
+\usepackage{array}
+
+\geometry{top=2.5cm, bottom=2.5cm, left=2.5cm, right=2.5cm}
+
+% Couleurs
+\definecolor{bleuprofond}{HTML}{0F2044}
+\definecolor{bleufonce}{HTML}{1A3365}
+\definecolor{bleumoyen}{HTML}{2C5282}
+\definecolor{bleuclair}{HTML}{4A90D9}
+\definecolor{bleuaccent}{HTML}{3B82F6}
+\definecolor{bleupastel}{HTML}{E8F0FE}
+\definecolor{gris600}{HTML}{475569}
+\definecolor{gris400}{HTML}{94A3B8}
+\definecolor{gris200}{HTML}{E2E8F0}
+\definecolor{gris100}{HTML}{F1F5F9}
+\definecolor{vert}{HTML}{10B981}
+\definecolor{vertpastel}{HTML}{ECFDF5}
+
+\hypersetup{
+  colorlinks=true,
+  linkcolor=bleumoyen,
+  urlcolor=bleuaccent,
+  pdfauthor={Selyan Mouhali},
+  pdftitle={Devis — Plateforme documentaire sante numerique},
+}
+
+\titleformat{\section}
+  {\Large\bfseries\color{bleuprofond}}
+  {\thesection.}{0.5em}{}
+  [\vspace{-0.3em}\textcolor{bleuaccent}{\rule{\textwidth}{1.5pt}}]
+
+\titleformat{\subsection}
+  {\large\bfseries\color{bleufonce}}
+  {\thesubsection}{0.5em}{}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\textcolor{gris400}{Devis n\textsuperscript{o} 2026-03-001}}
+\fancyhead[R]{\small\textcolor{gris400}{Selyan Mouhali}}
+\fancyfoot[C]{\small\textcolor{gris400}{\thepage}}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\headrule}{\hbox to\headwidth{\color{gris200}\leaders\hrule height \headrulewidth\hfill}}
+
+\tcbuselibrary{skins, breakable}
+
+\newtcolorbox{totalbox}{
+  colback=bleupastel,
+  colframe=bleuaccent,
+  arc=4pt,
+  boxrule=0.8pt,
+  left=12pt, right=12pt, top=10pt, bottom=10pt,
+}
+
+\newtcolorbox{notebox}{
+  colback=gris100,
+  colframe=gris200,
+  arc=3pt,
+  boxrule=0.6pt,
+  left=8pt, right=8pt, top=6pt, bottom=6pt,
+}
+
+% ============================================
+\begin{document}
+
+% ============================================
+% EN-TETE DU DEVIS
+% ============================================
+\thispagestyle{empty}
+
+\begin{minipage}[t]{0.55\textwidth}
+\vspace{0pt}
+{\LARGE\bfseries\textcolor{bleuprofond}{DEVIS}}
+
+\vspace{0.3cm}
+
+{\small\textcolor{gris400}{R\'ef\'erence :} \textbf{2026-03-001}}\\
+{\small\textcolor{gris400}{Date :} \textbf{21 mars 2026}}\\
+{\small\textcolor{gris400}{Validit\'e :} \textbf{30 jours}}
+\end{minipage}%
+\hfill
+\begin{minipage}[t]{0.40\textwidth}
+\vspace{0pt}
+\raggedleft
+{\large\bfseries\textcolor{bleuprofond}{Selyan Mouhali}}\\[0.3em]
+{\small\textcolor{gris600}{D\'eveloppeur fullstack}\\
+\textcolor{gris600}{Ing\'enierie documentaire \& IA}\\[0.3em]
+\textcolor{gris400}{selyan.mouhali@email.fr}\\
+\textcolor{gris400}{Paris, France}}
+\end{minipage}
+
+\vspace{0.8cm}
+\textcolor{bleuaccent}{\rule{\textwidth}{2pt}}
+\vspace{0.8cm}
+
+% ============================================
+% CLIENT
+% ============================================
+\begin{minipage}[t]{0.48\textwidth}
+{\small\textcolor{gris400}{\faIcon{user}\quad\textbf{PRESTATAIRE}}}\\[0.4em]
+\textbf{Selyan Mouhali}\\
+{\small Auto-entrepreneur\\
+SIRET : XXX XXX XXX XXXXX\\
+Paris, France}
+\end{minipage}%
+\hfill
+\begin{minipage}[t]{0.48\textwidth}
+{\small\textcolor{gris400}{\faIcon{building}\quad\textbf{CLIENT}}}\\[0.4em]
+\textbf{Association Sant\'e Num\'erique}\\
+{\small \`A l'attention du responsable de projet\\[0.3em]
+\textcolor{gris400}{Adresse du client}}
+\end{minipage}
+
+\vspace{1cm}
+
+% ============================================
+% OBJET
+% ============================================
+\section{Objet de la prestation}
+
+Conception, d\'eveloppement et livraison d'une \textbf{plateforme web de gestion documentaire} d\'edi\'ee au secteur de la sant\'e num\'erique, incluant~:
+
+\begin{itemize}[leftmargin=1.5em]
+  \item Structuration compl\`ete du mod\`ele documentaire (6 axes de classification, taxonomie, m\'etadonn\'ees)
+  \item D\'eveloppement d'une application web fullstack (Next.js, React, TypeScript)
+  \item Syst\`eme d'authentification et gestion des r\^oles (admin, contributeur, lecteur)
+  \item Module de recherche avanc\'ee avec filtres combin\'es
+  \item Tableau de bord analytique avec indicateurs et graphiques
+  \item Interface d'assistant IA pr\'epar\'ee pour int\'egration future
+  \item Documentation technique compl\`ete
+\end{itemize}
+
+% ============================================
+% DETAIL DES PRESTATIONS
+% ============================================
+\section{D\'etail des prestations}
+
+\renewcommand{\arraystretch}{1.5}
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{0.55\textwidth} >{\centering\arraybackslash}p{0.12\textwidth} >{\raggedleft\arraybackslash}p{0.12\textwidth} >{\raggedleft\arraybackslash\bfseries}p{0.12\textwidth}}
+\toprule
+\rowcolor{bleupastel}
+\textbf{\textcolor{bleuprofond}{Prestation}} & \textbf{\textcolor{bleuprofond}{Jours}} & \textbf{\textcolor{bleuprofond}{TJM}} & \textbf{\textcolor{bleuprofond}{Montant}} \\
+\midrule
+
+\textbf{Architecture \& infrastructure} \newline
+{\small\textcolor{gris600}{Mise en place Next.js 16, TypeScript, Prisma ORM, architecture MVC, couche services}} & 1,5 & 275\,\euro & 412\,\euro \\
+\midrule
+
+\textbf{Mod\`ele de donn\'ees} \newline
+{\small\textcolor{gris600}{Conception du sch\'ema relationnel (5 tables, 16 indexes), tags many-to-many, migrations, donn\'ees de d\'emonstration}} & 1,5 & 275\,\euro & 412\,\euro \\
+\midrule
+
+\textbf{Authentification \& autorisations} \newline
+{\small\textcolor{gris600}{Sessions s\'ecuris\'ees (cookies HTTP-only), 3 niveaux de r\^oles, protection des routes et API}} & 1,5 & 275\,\euro & 412\,\euro \\
+\midrule
+
+\textbf{Gestion documentaire (CRUD)} \newline
+{\small\textcolor{gris600}{Cr\'eation, lecture, modification, suppression de documents avec upload de fichiers (PDF, Word, PPTX)}} & 2,5 & 275\,\euro & 688\,\euro \\
+\midrule
+
+\textbf{Recherche \& filtres avanc\'es} \newline
+{\small\textcolor{gris600}{Recherche plein texte, 6 filtres combinables, tri multi-crit\`eres, d\'ebounce}} & 1,5 & 275\,\euro & 412\,\euro \\
+\midrule
+
+\textbf{Dashboard \& statistiques} \newline
+{\small\textcolor{gris600}{4 KPIs anim\'es, 3 graphiques interactifs, activit\'e r\'ecente, page statistiques d\'etaill\'ee avec r\'epartitions et tableaux}} & 2,5 & 275\,\euro & 688\,\euro \\
+\midrule
+
+\textbf{Assistant IA (interface)} \newline
+{\small\textcolor{gris600}{Interface de chat, 3 sc\'enarios de d\'emonstration, architecture pr\^ete pour int\'egration RAG/LLM}} & 1 & 275\,\euro & 275\,\euro \\
+\midrule
+
+\textbf{Design UI/UX} \newline
+{\small\textcolor{gris600}{Charte graphique sant\'e, navigation lat\'erale, syst\`eme de composants, animations, \'etats de chargement}} & 2,5 & 275\,\euro & 688\,\euro \\
+\midrule
+
+\textbf{Documentation \& rapport} \newline
+{\small\textcolor{gris600}{README technique complet, rapport client (cadrage, recommandations, analyse d'options)}} & 1 & 275\,\euro & 275\,\euro \\
+
+\bottomrule
+\end{tabularx}
+
+\vspace{0.8cm}
+
+% ============================================
+% TOTAL
+% ============================================
+\begin{totalbox}
+\begin{tabularx}{\textwidth}{X >{\raggedleft\arraybackslash}p{4cm}}
+
+{\textcolor{bleuprofond}{\textbf{Total jours}}} & \textbf{15,5 jours} \\[0.5em]
+
+\textcolor{gris600}{Sous-total HT} & 4\,262,50\,\euro \\[0.3em]
+\textcolor{gris600}{Remise forfaitaire} & $-$\,262,50\,\euro \\[0.3em]
+
+\arrayrulecolor{bleuaccent}\midrule
+
+\\[-0.5em]
+
+{\LARGE\bfseries\textcolor{bleuprofond}{Total HT}} & {\LARGE\bfseries\textcolor{bleuprofond}{4\,500,00\,\euro}} \\[0.5em]
+
+\textcolor{gris400}{\small TVA non applicable — article 293\,B du CGI} & \\
+
+\end{tabularx}
+\end{totalbox}
+
+\vspace{0.8cm}
+
+% ============================================
+% LIVRABLES
+% ============================================
+\section{Livrables}
+
+\begin{enumerate}[leftmargin=1.5em]
+  \item \textbf{Code source complet} — d\'ep\^ot Git avec historique, ~2\,900 lignes de code, 35 fichiers source
+  \item \textbf{Application fonctionnelle} — pr\^ete \`a d\'eployer, avec donn\'ees de d\'emonstration (12 documents, 42 tags, 3 utilisateurs)
+  \item \textbf{Base de donn\'ees structur\'ee} — sch\'ema optimis\'e (5 tables, 16 indexes), migrations versionn\'ees
+  \item \textbf{Documentation technique} — README exhaustif (installation, architecture, API, mod\`ele de donn\'ees)
+  \item \textbf{Rapport client} — analyse de cadrage, recommandations, plan d'action
+\end{enumerate}
+
+% ============================================
+% EVOLUTIONS FUTURES
+% ============================================
+\section{\'Evolutions futures (hors devis)}
+
+Les modules suivants pourront faire l'objet de devis compl\'ementaires~:
+
+\vspace{0.3cm}
+
+\renewcommand{\arraystretch}{1.4}
+\begin{tabularx}{\textwidth}{>{\bfseries\small\color{bleuprofond}}p{3.8cm} X >{\raggedleft\arraybackslash\small}p{2.8cm}}
+\toprule
+\textbf{\textcolor{bleuprofond}{Module}} & \textbf{\textcolor{bleuprofond}{Contenu}} & \textbf{\textcolor{bleuprofond}{Estimation}} \\
+\midrule
+Mise en production & PostgreSQL, Docker, CI/CD, monitoring, sauvegardes & 2\,500 -- 3\,500\,\euro \\
+\midrule
+S\'ecurit\'e \& conformit\'e & JWT/OAuth2, 2FA, audit trail, outils RGPD, pr\'eparation HDS & 3\,000 -- 4\,500\,\euro \\
+\midrule
+Int\'egration IA r\'eelle & Pipeline RAG, recherche s\'emantique, auto-r\'esum\'e, aide \`a la r\'edaction, auto-tagging & 7\,000 -- 12\,000\,\euro \\
+\midrule
+Gestion avanc\'ee & Versioning, workflows de validation, import/export batch, OCR & 5\,000 -- 8\,000\,\euro \\
+\midrule
+Collaboration & Commentaires, notifications, partage, gestion d'\'equipes & 3\,500 -- 5\,500\,\euro \\
+\bottomrule
+\end{tabularx}
+
+\vspace{0.8cm}
+
+% ============================================
+% CONDITIONS
+% ============================================
+\section{Conditions}
+
+\begin{notebox}
+\begin{itemize}[leftmargin=1.5em, itemsep=0.3em]
+  \item \textbf{Validit\'e} : ce devis est valable 30 jours \`a compter de sa date d'\'emission.
+  \item \textbf{Paiement} : 50\,\% \`a la signature, 50\,\% \`a la livraison.
+  \item \textbf{D\'elai de livraison} : 3 \`a 4 semaines apr\`es validation du devis.
+  \item \textbf{Propri\'et\'e} : le code source et l'ensemble des livrables sont c\'ed\'es au client \`a la livraison.
+  \item \textbf{Maintenance} : une p\'eriode de garantie de 30 jours est incluse apr\`es livraison pour la correction d'anomalies.
+  \item \textbf{TVA} : TVA non applicable, article 293\,B du Code g\'en\'eral des imp\^ots.
+\end{itemize}
+\end{notebox}
+
+\vspace{1.5cm}
+
+% ============================================
+% SIGNATURES
+% ============================================
+\begin{minipage}[t]{0.45\textwidth}
+{\small\textcolor{gris400}{Le prestataire}}\\[0.5em]
+\textbf{Selyan Mouhali}\\[0.3em]
+{\small Date :}\\[2cm]
+{\small Signature :}
+\end{minipage}%
+\hfill
+\begin{minipage}[t]{0.45\textwidth}
+{\small\textcolor{gris400}{Le client}}\\[0.5em]
+\textbf{Association Sant\'e Num\'erique}\\[0.3em]
+{\small Date :}\\[2cm]
+{\small Signature :}\\
+{\footnotesize\textcolor{gris400}{Pr\'ec\'ed\'e de la mention \og Bon pour accord \fg}}
+\end{minipage}
+
+\vfill
+
+\begin{center}
+\small\textcolor{gris400}{---}\\[0.3em]
+\small\textcolor{gris400}{Selyan Mouhali~---~D\'eveloppeur fullstack~---~Paris}\\[0.2em]
+\small\textcolor{gris400}{selyan.mouhali@email.fr}
+\end{center}
+
+\end{document}
