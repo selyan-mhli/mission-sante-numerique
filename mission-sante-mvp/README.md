@@ -70,13 +70,11 @@ DocSante est une plateforme web qui permet de :
 - Tableau des sources avec pourcentages
 - Tous les graphiques du dashboard en version etendue
 
-### Assistant IA (beta)
-- Interface de chat simulee
-- 3 scenarios de demonstration :
-  - Synthese de documents par thematique
-  - Aide a la redaction pour nouveaux contributeurs
-  - Identification de contenus pour partenariats
-- Architecture prete pour integration d'un vrai LLM / RAG
+### Assistant IA
+- Chat contextuel branche sur Claude (Anthropic)
+- Analyse le corpus documentaire (titres, resumes, tags) pour repondre
+- Cas d'usage : synthese par thematique, aide a la redaction, identification de contenus pertinents
+- Historique de conversation
 
 ### Authentification et roles
 - Login/logout avec sessions HTTP-only cookies
@@ -260,7 +258,7 @@ mission-sante-mvp/
 │       ├── prisma.ts              # Client singleton
 │       ├── auth.ts                # Sessions cookie
 │       ├── utils.ts               # Helpers + constantes metier
-│       └── seed.ts                # 12 documents + 42 tags + 3 users
+│       └── seed.ts                # 48 documents + 143 tags + 3 users
 │
 └── public/uploads/                # Fichiers uploades
 ```
