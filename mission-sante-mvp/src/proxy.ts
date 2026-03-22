@@ -4,7 +4,7 @@ import crypto from "crypto";
 
 const SECRET = process.env.SESSION_SECRET || "docsante-dev-fallback-secret";
 
-const PUBLIC_PATHS = ["/login", "/api/auth/login", "/api/auth/logout"];
+const PUBLIC_PATHS = ["/login", "/register", "/api/auth/login", "/api/auth/logout", "/api/auth/register"];
 
 function verifyToken(token: string): boolean {
   const [b64, signature] = token.split(".");

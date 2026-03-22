@@ -2,11 +2,12 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { FolderOpen, Loader2, Lock, Mail } from "lucide-react";
+import { FolderOpen, Loader2, Lock, Mail, User } from "lucide-react";
 import Link from "next/link";
 
-export default function LoginPage() {
+export default function RegisterPage() {
   const router = useRouter();
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -18,22 +19,22 @@ export default function LoginPage() {
     setError("");
 
     try {
-      const res = await fetch("/api/auth/login", {
+      const res = await fetch("/api/auth/register", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, password }),
+        body: JSON.stringify({ name, email, password }),
       });
 
       const data = await res.json().catch(() => null);
 
       if (!res.ok) {
-        throw new Error(data?.error || "Erreur serveur");
+        throw new Error(data?.error || "Erreur lors de l'inscription");
       }
 
       router.push("/documents");
       router.refresh();
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Erreur de connexion");
+      setError(err instanceof Error ? err.message : "Erreur inconnue");
     } finally {
       setLoading(false);
     }
@@ -41,26 +42,23 @@ export default function LoginPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-bleu-profond via-bleu-fonce to-bleu-moyen flex items-center justify-center p-4">
-      {/* Background decorations */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-1/4 -left-32 w-96 h-96 bg-blue-400/5 rounded-full blur-3xl" />
         <div className="absolute bottom-1/4 -right-32 w-96 h-96 bg-purple-400/5 rounded-full blur-3xl" />
       </div>
 
       <div className="w-full max-w-md relative z-10">
-        {/* Logo */}
         <div className="text-center mb-8">
           <div className="w-16 h-16 rounded-2xl bg-white/10 backdrop-blur-sm flex items-center justify-center mx-auto mb-4 border border-white/10">
             <FolderOpen className="w-8 h-8 text-white" />
           </div>
           <h1 className="text-2xl font-bold text-white">Base documentaire</h1>
-          <p className="text-sm text-blue-200/60 mt-1">Santé numérique</p>
+          <p className="text-sm text-blue-200/60 mt-1">Sante numerique</p>
         </div>
 
-        {/* Form card */}
         <div className="bg-white rounded-2xl shadow-2xl p-8">
-          <h2 className="text-lg font-semibold text-slate-800 mb-1">Connexion</h2>
-          <p className="text-sm text-slate-500 mb-6">Accédez à la plateforme documentaire</p>
+          <h2 className="text-lg font-semibold text-slate-800 mb-1">Creer un compte</h2>
+          <p className="text-sm text-slate-500 mb-6">Rejoignez la plateforme documentaire</p>
 
           {error && (
             <div className="bg-red-50 border border-red-200 text-red-700 text-sm p-3 rounded-lg mb-4">
@@ -69,6 +67,21 @@ export default function LoginPage() {
           )}
 
           <form onSubmit={handleSubmit} className="space-y-4">
+            <div>
+              <label className="block text-xs font-medium text-slate-600 mb-1.5">Nom complet</label>
+              <div className="relative">
+                <User className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+                <input
+                  type="text"
+                  required
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  className="w-full pl-10 pr-4 py-2.5 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-400 transition"
+                  placeholder="Jean Dupont"
+                />
+              </div>
+            </div>
+
             <div>
               <label className="block text-xs font-medium text-slate-600 mb-1.5">Email</label>
               <div className="relative">
@@ -79,7 +92,7 @@ export default function LoginPage() {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   className="w-full pl-10 pr-4 py-2.5 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-400 transition"
-                  placeholder="admin@sante-numerique.fr"
+                  placeholder="jean@exemple.fr"
                 />
               </div>
             </div>
@@ -91,10 +104,11 @@ export default function LoginPage() {
                 <input
                   type="password"
                   required
+                  minLength={6}
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   className="w-full pl-10 pr-4 py-2.5 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-400 transition"
-                  placeholder="Mot de passe"
+                  placeholder="Minimum 6 caracteres"
                 />
               </div>
             </div>
@@ -105,34 +119,17 @@ export default function LoginPage() {
               className="w-full bg-gradient-to-r from-blue-500 to-blue-600 text-white py-2.5 rounded-xl text-sm font-semibold hover:from-blue-600 hover:to-blue-700 transition-all disabled:opacity-50 flex items-center justify-center gap-2 shadow-md shadow-blue-500/20"
             >
               {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : null}
-              Se connecter
+              Creer mon compte
             </button>
           </form>
 
           <div className="mt-6 pt-4 border-t border-slate-100 text-center">
             <p className="text-sm text-slate-500">
-              Pas encore de compte ?{" "}
-              <Link href="/register" className="text-blue-500 font-medium hover:underline">
-                Creer un compte
+              Deja un compte ?{" "}
+              <Link href="/login" className="text-blue-500 font-medium hover:underline">
+                Se connecter
               </Link>
             </p>
-          </div>
-
-          <div className="mt-4">
-            <p className="text-[11px] text-slate-400 text-center mb-2">
-              Compte de demonstration :
-            </p>
-            <button
-              type="button"
-              onClick={() => {
-                setEmail("admin@sante-numerique.fr");
-                setPassword("admin123");
-              }}
-              className="w-full text-left px-3 py-1.5 rounded-lg hover:bg-slate-50 transition text-xs"
-            >
-              <span className="font-medium text-slate-600">Admin</span>
-              <span className="text-slate-400 ml-2">admin@sante-numerique.fr</span>
-            </button>
           </div>
         </div>
       </div>
