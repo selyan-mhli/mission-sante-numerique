@@ -85,7 +85,7 @@ L'assistant IA analyse votre demande en s'appuyant sur les documents de la base.
 
     const client = new Anthropic({ apiKey });
     const response = await client.messages.create({
-      model: "claude-sonnet-4-20250514",
+      model: "claude-sonnet-4-6-20250514",
       max_tokens: 1024,
       system: systemPrompt,
       messages,
@@ -95,10 +95,11 @@ L'assistant IA analyse votre demande en s'appuyant sur les documents de la base.
       response.content[0].type === "text" ? response.content[0].text : "";
 
     return NextResponse.json({ response: text, simulated: false });
-  } catch (error) {
+  } catch (error: unknown) {
     console.error("AI error:", error);
+    const errMsg = error instanceof Error ? error.message : "Erreur inconnue";
     return NextResponse.json(
-      { error: "Erreur lors de la generation de la reponse" },
+      { error: `Erreur lors de la generation de la reponse: ${errMsg}` },
       { status: 500 }
     );
   }
